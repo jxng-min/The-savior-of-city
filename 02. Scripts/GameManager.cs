@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        KillCounterCtrl.m_kill_count = 0;
         PlayerCtrl.player_state = PlayerCtrl.State.Playing;
         m_dead_panel.gameObject.SetActive(false);
         m_clear_panel.gameObject.SetActive(false);
