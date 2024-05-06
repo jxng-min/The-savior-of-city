@@ -307,7 +307,7 @@ public class PlayerCtrl : MonoBehaviour
             }
             else if(coll.collider.CompareTag("ARROW"))
             {
-                TakeDamage(coll.transform.position, 10 + Random.Range(0, 5));            
+                TakeDamage(coll.transform.position, 5 + Random.Range(0, 5));            
             }
             else if(coll.collider.CompareTag("KNIGHT"))
             {

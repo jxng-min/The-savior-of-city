@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ArrowCtrl : MonoBehaviour
 {
-    private float m_speed;
+    private float m_speed = 3.0f;
     private float m_distance = 0.5f;
     [SerializeField]
     private LayerMask m_is_layer;

@@ -29,6 +29,9 @@ public class ArcherCtrl : MonoBehaviour
 
     private GameObject m_player;
 
+    [SerializeField]
+    private GameObject m_arrow;
+
     void Awake()
     {
         m_rigidbody = this.gameObject.GetComponent<Rigidbody2D>();
@@ -73,6 +76,7 @@ public class ArcherCtrl : MonoBehaviour
         this.gameObject.tag = "ARCHER";
         this.gameObject.layer = 7;
         m_sprite_renderer.color = new Color(1, 1, 1, 1);
+        Invoke("ShootArrow", Random.Range(3, 5));
     }
 
     void Move()
@@ -161,4 +165,37 @@ public class ArcherCtrl : MonoBehaviour
         float target_hp_value = (float)m_hp / 50.0f;
         m_hp_bar_slider.value = Mathf.Lerp(m_hp_bar_slider.value, target_hp_value, Time.deltaTime * 5.0f);
     }
+    
+    void OnDrawGizmos()
+    {
+    Gizmos.color = Color.blue;
+
+    Vector3 direction = new Vector3(0, 0, 0);
+    if (m_next_move < 0f)
+        direction = Vector3.left;
+    else if(m_next_move > 0f)
+        direction = Vector3.right;
+    
+    Gizmos.DrawLine(transform.position + new Vector3(0, 0.5f, 0)
+    , transform.position + direction + new Vector3(0, 0.5f, 0));
+    }
+
+void ShootArrow()
+{
+    GameObject arrow;
+
+    arrow = Instantiate(m_arrow, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+    if(m_next_move < 0f)
+    {
+        arrow.transform.localScale = new Vector2(-5, 5);
+        arrow.GetComponent<Rigidbody2D>().AddForce(Vector2.left * 7, ForceMode2D.Impulse); // 왼쪽 방향으로 힘을 가합니다.
+    }
+    else if(m_next_move > 0f)
+    {
+        arrow.transform.localScale = new Vector2(5, 5);
+        arrow.GetComponent<Rigidbody2D>().AddForce(Vector2.right, ForceMode2D.Impulse); // 오른쪽 방향으로 힘을 가합니다.
+    }
+
+    Invoke("ShootArrow", Random.Range(3, 5));
+}
 }

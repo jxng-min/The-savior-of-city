@@ -240,6 +240,7 @@ MonoBehaviour:
     m_Bits: 64
   m_canvas: {fileID: 2462824473738046486}
   m_hp_bar: {fileID: 683416042483129201, guid: c25a7686230207543af7dc3be0379d0f, type: 3}
+  m_arrow: {fileID: 4872286364169947141, guid: 0111d181c29b0c647af6c894fd5c512a, type: 3}
 --- !u!95 &2898355870690515921
 Animator:
   serializedVersion: 5
