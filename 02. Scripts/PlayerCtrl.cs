@@ -170,12 +170,16 @@ public class PlayerCtrl : MonoBehaviour
                 Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(m_attack1_pos.position, m_attack1_box_size, 0);
                 foreach(Collider2D collider in collider2Ds)
                 {
-                    if(collider.CompareTag("SLIME"))
-                        collider.GetComponent<SlimeCtrl>().TakeDamage(m_player_attack + Random.Range(5, 10));
-                    else if(collider.CompareTag("ARCHER"))
-                        collider.GetComponent<ArcherCtrl>().TakeDamage(m_player_attack + Random.Range(5, 10));
-                    else if(collider.CompareTag("KNIGHT"))
-                        collider.GetComponent<KnightCtrl>().TakeDamage(m_player_attack + Random.Range(5, 10));
+                    if(collider.gameObject.layer != 8)
+                    {
+                        if(collider.CompareTag("SLIME"))
+                            collider.GetComponent<SlimeCtrl>().TakeDamage(m_player_attack + Random.Range(5, 10));
+                        else if(collider.CompareTag("ARCHER"))
+                            collider.GetComponent<ArcherCtrl>().TakeDamage(m_player_attack + Random.Range(5, 10));
+                        else if(collider.CompareTag("KNIGHT"))
+                            collider.GetComponent<KnightCtrl>().TakeDamage(m_player_attack + Random.Range(5, 10));
+                    }
+                   
                 }
 
                 m_animator.SetTrigger("Attack1");
@@ -197,12 +201,16 @@ public class PlayerCtrl : MonoBehaviour
                 Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(m_attack2_pos.position, m_attack2_box_size, 0);
                 foreach(Collider2D collider in collider2Ds)
                 {
-                    if(collider.CompareTag("SLIME"))
-                        collider.GetComponent<SlimeCtrl>().TakeDamage(m_player_attack + Random.Range(5, 10));
-                    else if(collider.CompareTag("ARCHER"))
-                        collider.GetComponent<ArcherCtrl>().TakeDamage(m_player_attack + Random.Range(5, 10));
-                    else if(collider.CompareTag("KNIGHT"))
-                        collider.GetComponent<KnightCtrl>().TakeDamage(m_player_attack + Random.Range(5, 10));
+                    if(collider.gameObject.layer != 8)
+                    {
+                        if(collider.CompareTag("SLIME"))
+                            collider.GetComponent<SlimeCtrl>().TakeDamage(m_player_attack + Random.Range(5, 10));
+                        else if(collider.CompareTag("ARCHER"))
+                            collider.GetComponent<ArcherCtrl>().TakeDamage(m_player_attack + Random.Range(5, 10));
+                        else if(collider.CompareTag("KNIGHT"))
+                            collider.GetComponent<KnightCtrl>().TakeDamage(m_player_attack + Random.Range(5, 10));
+                    }
+                    
                 }
 
                 m_animator.SetTrigger("Attack2");
@@ -224,12 +232,15 @@ public class PlayerCtrl : MonoBehaviour
                 Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(m_attack3_pos.position, m_attack3_box_size, 0);
                 foreach(Collider2D collider in collider2Ds)
                 {
-                    if(collider.CompareTag("SLIME"))
-                        collider.GetComponent<SlimeCtrl>().TakeDamage(m_player_attack + Random.Range(5, 10));
-                    else if(collider.CompareTag("ARCHER"))
-                        collider.GetComponent<ArcherCtrl>().TakeDamage(m_player_attack + Random.Range(5, 10));
-                    else if(collider.CompareTag("KNIGHT"))
-                        collider.GetComponent<KnightCtrl>().TakeDamage(m_player_attack + Random.Range(5, 10));
+                    if(collider.gameObject.layer != 8)
+                    {
+                        if(collider.CompareTag("SLIME"))
+                            collider.GetComponent<SlimeCtrl>().TakeDamage(m_player_attack + Random.Range(5, 10));
+                        else if(collider.CompareTag("ARCHER"))
+                            collider.GetComponent<ArcherCtrl>().TakeDamage(m_player_attack + Random.Range(5, 10));
+                        else if(collider.CompareTag("KNIGHT"))
+                            collider.GetComponent<KnightCtrl>().TakeDamage(m_player_attack + Random.Range(5, 10));
+                    }
                 }
 
                 m_animator.SetTrigger("Attack3");
@@ -256,7 +267,7 @@ public class PlayerCtrl : MonoBehaviour
 
     public void TakeDamage(Vector2 target_pos, int damage)
     {
-        this.gameObject.layer = 9;
+        this.gameObject.layer = 10;
 
         m_animator.SetTrigger("Damage");
         m_sprite_renderer.color = new Color(1, 1, 1, 0.4f);
@@ -276,7 +287,7 @@ public class PlayerCtrl : MonoBehaviour
 
     void OffDamage()
     {
-        this.gameObject.layer = 8;
+        this.gameObject.layer = 6;
         m_sprite_renderer.color = new Color(1, 1, 1, 1);
     }
 
@@ -288,17 +299,20 @@ public class PlayerCtrl : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if(coll.collider.CompareTag("SLIME") || coll.collider.CompareTag("ARCHER"))
+        if(coll.collider.gameObject.layer != 8)
         {
-            TakeDamage(coll.transform.position, 5 + Random.Range(0, 5));
-        }
-        else if(coll.collider.CompareTag("ARROW"))
-        {
-            TakeDamage(coll.transform.position, 10 + Random.Range(0, 5));            
-        }
-        else if(coll.collider.CompareTag("KNIGHT"))
-        {
-            TakeDamage(coll.transform.position, 10 + Random.Range(0, 5));
+            if(coll.collider.CompareTag("SLIME") || coll.collider.CompareTag("ARCHER"))
+            {
+                TakeDamage(coll.transform.position, 5 + Random.Range(0, 5));
+            }
+            else if(coll.collider.CompareTag("ARROW"))
+            {
+                TakeDamage(coll.transform.position, 10 + Random.Range(0, 5));            
+            }
+            else if(coll.collider.CompareTag("KNIGHT"))
+            {
+                TakeDamage(coll.transform.position, 10 + Random.Range(0, 5));
+            }
         }
     }
 

@@ -124,7 +124,7 @@ public class KnightCtrl : MonoBehaviour
 
     void Dead()
     {
-        this.gameObject.layer = 10;
+        this.gameObject.layer = 8;
 
         m_rigidbody.velocity = new Vector2(0, 0);
         CancelInvoke();

@@ -152,7 +152,7 @@ public class SlimeCtrl : MonoBehaviour
     // 적이 죽었을 경우를 처리하는 함수
     void Dead()
     {
-        this.gameObject.layer = 10;
+        this.gameObject.layer = 8;
 
         m_rigidbody.velocity = new Vector2(0, 0);
         CancelInvoke();
