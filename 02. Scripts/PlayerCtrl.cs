@@ -167,6 +167,7 @@ public class PlayerCtrl : MonoBehaviour
         {
             if(Input.GetKey(KeyCode.Q))
             {
+                SoundManager.instance.PlaySE("Q");
                 Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(m_attack1_pos.position, m_attack1_box_size, 0);
                 foreach(Collider2D collider in collider2Ds)
                 {
@@ -198,6 +199,7 @@ public class PlayerCtrl : MonoBehaviour
         {
             if(Input.GetKey(KeyCode.W))
             {
+                SoundManager.instance.PlaySE("W");
                 Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(m_attack2_pos.position, m_attack2_box_size, 0);
                 foreach(Collider2D collider in collider2Ds)
                 {
@@ -229,6 +231,7 @@ public class PlayerCtrl : MonoBehaviour
         {
             if(Input.GetKey(KeyCode.E))
             {
+                SoundManager.instance.PlaySE("E");
                 Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(m_attack3_pos.position, m_attack3_box_size, 0);
                 foreach(Collider2D collider in collider2Ds)
                 {

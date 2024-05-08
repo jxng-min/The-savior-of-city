@@ -22,10 +22,12 @@ public class GameManager : MonoBehaviour
     {
         if(PlayerCtrl.player_state == PlayerCtrl.State.Dead)
         {
+            SoundManager.instance.PlaySE("GameOver");
             m_dead_panel.gameObject.SetActive(true);
         }
         else if(PlayerCtrl.player_state == PlayerCtrl.State.Clear)
         {
+            SoundManager.instance.PlaySE("GameClear");
             m_clear_panel.gameObject.SetActive(true);
         }
     }
